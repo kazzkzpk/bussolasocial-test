@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Exceptions\EmptyShoppingCartException;
 
 /**
- * Class CatalogService
+ * Class PaymentService
  * @author    Gabriel Morgado <kazzxd1@gmail.com>
  * @copyright Kazz Corp <kazzcorp.com>
  */

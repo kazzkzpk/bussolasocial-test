@@ -1,61 +1,60 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Como instalar o projeto
 
-## About Laravel
+É necessário ter PHP 8.3 e composer instalado na máquina.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Instale as dependências do projeto:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```composer install```
 
-## Learning Laravel
+### Detalhes importantes
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Como padrão, validators devem ser feitos utilizando os requests dos controllers. Com exceção de 2 cenários: o payload a ser utilizado veio através de uma fila sem validação (ex: webhook de API externa integrada) ou a partir de WebSocket e montado no frontend. Como o teste foi feito sem API, conforme pedido, optei pela validação no serviço, imaginando que seja um dos dois cenários acima.
+- Testes Unitários costumam ser mockados para simular filas e acesso a repositórios do banco de dados. Como não é o caso, os testes não foram mockados.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Classes/serviços
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Catalog
+Responsável pelo cadastro de items.
 
-## Laravel Sponsors
+É um Singleton, portanto, utiliza ServiceProvider.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Utilizado para validação de preço e se o item ainda existe antes de fechar o carrinho de compras.
 
-### Premium Partners
+### Catalog/Item
+É um item (produto) que poderá ser adicionado no catálogo ou carrinho de comprar.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Credit Card
+Responsável pelo cadastro de cartão de crédito.
 
-## Contributing
+### Shopping Cart
+Responsável pelo carrinho de compras.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Payment/Pix
+Responsável por fechar o pedido com a forma de pagamento PIX.
 
-## Code of Conduct
+Inclui algorítimo para descontos.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Payment/CreditCard
+Responsável por fechar o pedido com a forma de pagamento PIX.
 
-## Security Vulnerabilities
+Inclui algorítimo para descontos e taxas, conforme parcelamento.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Simulando um pedido
 
-## License
+#### Para simular um pedido efetuado com PIX e 3 diferentes produtos:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```app:simulate-shopping-cart:request-pix```
+
+#### Para simular um pedido efetuado com cartão de crédito parcelado 1x e 2 diferentes produtos:
+
+```app:simulate-shopping-cart:creditcard-1x```
+
+#### Para simular um pedido efetuado com cartão de crédito parcelado 6x e 2 diferentes produtos:
+
+```app:simulate-shopping-cart:creditcard-6x```
+
+### TODO:
+- Docker
+- Testes Unitários
