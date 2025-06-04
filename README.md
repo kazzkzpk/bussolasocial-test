@@ -1,10 +1,17 @@
 
 ### Como instalar o projeto
 
-É necessário ter PHP 8.3 e composer instalado na máquina.
+É necessário ter PHP 8.3 e composer, ou Docker.
 
+Instale as dependências do projeto a partir do Docker:
 
-Instale as dependências do projeto:
+```docker-compose up -d --build```
+
+```docker exec -it php bash```
+
+```composer install```
+
+Instale as dependências do projeto nativamente:
 
 ```composer install```
 
@@ -43,9 +50,12 @@ Inclui algorítimo para descontos e taxas, conforme parcelamento.
 
 ## Simulando um pedido
 
+Se estiver utilizando docker, abrir a bash:
+```docker exec -it php bash```
+
 #### Para simular um pedido efetuado com PIX e 3 diferentes produtos:
 
-```app:simulate-shopping-cart:request-pix```
+```php artisan app:simulate-shopping-cart:request-pix```
 
 Output esperado:
 
@@ -63,7 +73,7 @@ Pix Payment discount value: R$ 595,98
 
 #### Para simular um pedido efetuado com cartão de crédito parcelado 1x e 2 diferentes produtos:
 
-```app:simulate-shopping-cart:request-creditcard-1x```
+```php artisan app:simulate-shopping-cart:request-creditcard-1x```
 
 Output esperado:
 
@@ -81,7 +91,7 @@ Request with 1x installments at value: R$ 2.474,93
 
 #### Para simular um pedido efetuado com cartão de crédito parcelado 6x e 2 diferentes produtos:
 
-```app:simulate-shopping-cart:request-creditcard-6x```
+```php artisan app:simulate-shopping-cart:request-creditcard-6x```
 
 Output esperado:
 ```

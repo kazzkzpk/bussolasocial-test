@@ -1,0 +1,14 @@
+services:
+    # Apache: Server (with PHP)
+    php:
+        container_name: php
+        build: ./.docker/php
+        restart: always
+        volumes:
+            - ./:/var/www/html:delegated
+        ports:
+            - 80:80
+        environment:
+            APACHE_RUN_USER: "#1000"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
