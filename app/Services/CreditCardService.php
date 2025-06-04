@@ -146,7 +146,7 @@ class CreditCardService implements CreditCardServiceInterface
         $data = $this->toArray();
 
         $validator = Validator::make($data, [
-            'holderName' => 'required|string|max:128',
+            'holderName' => 'required|string|min:1|max:128',
             'number' => 'required|string|min:16|max:16',
             'expirationDateYear' => 'required|integer|min:1900|max:2200',
             'expirationDateMonth' => 'required|integer|min:1|max:12',

@@ -98,7 +98,7 @@ class ItemService implements ItemServiceInterface
         $data = $this->toArray();
 
         $validator = Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:1|max:255',
             'value' => 'required|integer|min:0'
         ]);
 
