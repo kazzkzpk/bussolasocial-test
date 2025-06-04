@@ -106,3 +106,12 @@ Credit Card Payment fees value: R$ 326,40
 Request with 1x installments at value: R$ 938,71
 Request with 5x installments at value: R$ 938,67
 ```
+
+## Testes Unitários
+
+Se estiver utilizando docker, abrir a bash:
+```docker exec -it php bash```
+
+Rodar testes unitários:
+
+```php artisan test```
