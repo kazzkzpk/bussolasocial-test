@@ -16,7 +16,8 @@ class CatalogService implements CatalogServiceInterface
     /** @var Collection<Collection<ItemService, int>> */
     private Collection $items;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->items = collect();
     }
 

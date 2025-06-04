@@ -47,13 +47,55 @@ Inclui algorítimo para descontos e taxas, conforme parcelamento.
 
 ```app:simulate-shopping-cart:request-pix```
 
+Output esperado:
+
+```
+Initialize Simulate Shopping Cart with PIX Request
+Adding 2x item id 1 [Smart Tv Samsung 32" Polegadas Led Hd Wi-fi Hdmi] with unit cost [R$ 1.047,88] to item cart
+Shopping Card total value: R$ 2.095,76
+Adding 2x item id 1 [Cooktop Gás Dako Supreme Vidro Temperado 220V Preto] with unit cost [R$ 327,08] to item cart
+Shopping Card total value: R$ 2.749,92
+Adding 1x item id 1 [Geladeira Brastemp Frost Free 375L 220V] with unit cost [R$ 3.209,90] to item cart
+Shopping Card total value: R$ 5.959,82
+Pix Payment total value: R$ 5.363,84
+Pix Payment discount value: R$ 595,98
+```
+
 #### Para simular um pedido efetuado com cartão de crédito parcelado 1x e 2 diferentes produtos:
 
-```app:simulate-shopping-cart:creditcard-1x```
+```app:simulate-shopping-cart:request-creditcard-1x```
+
+Output esperado:
+
+```
+Initialize Simulate Shopping Cart with Credit Card (1x installments) Request
+Adding 2x item id 1 [Smart Tv Samsung 32" Polegadas Led Hd Wi-fi Hdmi] with unit cost [R$ 1.047,88] to item cart
+Shopping Card total value: R$ 2.095,76
+Adding 2x item id 1 [Cooktop Gás Dako Supreme Vidro Temperado 220V Preto] with unit cost [R$ 327,08] to item cart
+Shopping Card total value: R$ 2.749,92
+Credit Card Payment total value: R$ 2.474,93
+Credit Card Payment discount value: R$ 274,99
+Credit Card Payment fees value: R$ 0,00
+Request with 1x installments at value: R$ 2.474,93
+```
 
 #### Para simular um pedido efetuado com cartão de crédito parcelado 6x e 2 diferentes produtos:
 
-```app:simulate-shopping-cart:creditcard-6x```
+```app:simulate-shopping-cart:request-creditcard-6x```
+
+Output esperado:
+```
+Initialize Simulate Shopping Cart with Credit Card (6x installments) Request
+Adding 2x item id 1 [Smart Tv Samsung 32" Polegadas Led Hd Wi-fi Hdmi] with unit cost [R$ 1.047,88] to item cart
+Shopping Card total value: R$ 2.095,76
+Adding 1x item id 1 [Geladeira Brastemp Frost Free 375L 220V] with unit cost [R$ 3.209,90] to item cart
+Shopping Card total value: R$ 5.305,66
+Credit Card Payment total value: R$ 5.632,06
+Credit Card Payment discount value: R$ 0,00
+Credit Card Payment fees value: R$ 326,40
+Request with 1x installments at value: R$ 938,71
+Request with 5x installments at value: R$ 938,67
+```
 
 ### TODO:
 - Docker

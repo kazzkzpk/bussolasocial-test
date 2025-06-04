@@ -9,7 +9,7 @@ namespace App\Services;
  */
 class CatalogServiceFactory
 {
-    public function __invoke(): CatalogService
+    public function __invoke(): CatalogServiceInterface
     {
         return new CatalogService();
     }
