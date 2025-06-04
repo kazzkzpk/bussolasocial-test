@@ -9,7 +9,7 @@ Instale as dependências do projeto:
 ```composer install```
 
 ### Detalhes importantes
-
+- Existem verificações específicas, como: items removidos do catálogo são verificados e fazer throw de exception caso encontrados em um carrinho de compras, e, valores divergentes do item no carrinho com o catálogo também fazer throw de exception. 
 - Como padrão, validators devem ser feitos utilizando os requests dos controllers. Com exceção de 2 cenários: o payload a ser utilizado veio através de uma fila sem validação (ex: webhook de API externa integrada) ou a partir de WebSocket e montado no frontend. Como o teste foi feito sem API, conforme pedido, optei pela validação no serviço, imaginando que seja um dos dois cenários acima.
 - Testes Unitários costumam ser mockados para simular filas e acesso a repositórios do banco de dados. Como não é o caso, os testes não foram mockados.
 
